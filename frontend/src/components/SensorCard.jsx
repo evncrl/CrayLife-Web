@@ -9,6 +9,7 @@ function formatTimestamp(ts) {
 function getIcon(name) {
   const icons = {
     ammonia: "🧪",
+    uv: "🔆",
     lux: "💡",
     voltage: "⚡",
     tds: "💧",

@@ -66,7 +66,7 @@ export const SENSOR_CONFIG = {
     icon: "tank",
   },
   watertank_valve: {
-    label: "Inlet Valve",
+    label: "Solenoid Valve",
     group: "watertank",
     type: "toggle",
     icon: "valve",
