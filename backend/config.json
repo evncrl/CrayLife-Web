@@ -1,0 +1,22 @@
+{
+    "broker": "localhost",
+    "port": 1883,
+    "topics": {
+        "ammonia": "craylife/sensor/ammonia",
+        "UV": "craylife/control/uv",
+        "lux": "craylife/sensor/light",
+        "ir":"craylife/sensor/shelter_count",
+
+        "status": "craylife/status",
+        "growlightstatus": "craylife/growlight/status",
+
+        "watertank_tds": "home/watertank/tds",
+        "watertank_status": "home/watertank/status",
+        "watertank_valve": "home/watertank/valve",
+        "watertank_pump2": "home/watertank/pump2",
+        "watertank_pump3": "home/watertank/pump3",
+        "watertank_flow": "home/watertank/flow",
+        "watertank_flow_status": "home/watertank/flow_stat"
+
+    }
+}
