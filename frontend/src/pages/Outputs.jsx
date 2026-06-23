@@ -1,8 +1,9 @@
 import { getSensorMeta, isEmptyValue, isOnValue, deriveAlertSeverity } from "../config/sensorConfig";
 
-const OUTPUT_SENSORS  = ["watertank_valve", "watertank_pump2", "watertank_pump3"];
+const OUTPUT_SENSORS  = ["watertank_valve", "watertank_pump2", "watertank_pump3", "growlightstatus"];
 const READING_SENSORS = ["watertank_tds", "watertank_status", "watertank_flow"];
 const ALERT_SENSORS   = ["watertank_flow_status"];
+const LIGHT_OUTPUTS   = ["growlightstatus", "uv"];
 
 // Icon glyphs keyed to sensor meta.icon — no external icon lib needed
 const GLYPHS = {
@@ -188,6 +189,20 @@ export default function Outputs({ sensors }) {
         <div className="card-grid card-grid--wide">
           {readingCards.map((s) => (
             <ReadingCard key={s.sensor_name} sensor={s} />
+          ))}
+        </div>
+      </section>
+
+      {/* Light */}
+      <section className="section">
+        <div className="section__head">
+          <h2 className="section__title">Light</h2>
+          <span className="section__count">{LIGHT_OUTPUTS.length}</span>
+          <span className="section__rule" />
+        </div>
+        <div className="card-grid" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+          {LIGHT_OUTPUTS.map((name) => (
+            <OutputCard key={name} name={name} sensors={sensors} />
           ))}
         </div>
       </section>

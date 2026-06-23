@@ -15,6 +15,17 @@ const NAV = [
       { id: "history", label: "History", icon: "📈" },
     ],
   },
+  {
+    section: "Individual",
+    items: [
+      { id: "piad", label: "Piad", icon: "📈" },
+      { id: "tomon", label: "Tomon", icon: "📈" },
+      { id: "leano", label: "Leaño", icon: "📈" },
+      { id: "belenzo", label: "Belenzo", icon: "📈" },
+      { id: "carutcho", label: "Carutcho", icon: "📈" },
+      { id: "ofracio", label: "Ofracio", icon: "📈" },
+    ],
+  },
 ];
 
 export default function Sidebar({
@@ -77,9 +88,9 @@ export default function Sidebar({
                       : undefined
                   }
                 >
-                  <span className="nav-item__icon">
+                  {/* <span className="nav-item__icon">
                     {item.icon}
-                  </span>
+                  </span> */}
 
                   {item.label}
 

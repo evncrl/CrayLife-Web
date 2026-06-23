@@ -3,7 +3,7 @@
     "port": 1883,
     "topics": {
         "ammonia": "craylife/sensor/ammonia",
-        "UV": "craylife/control/uv",
+        "uv": "craylife/uv/status",
         "lux": "craylife/sensor/light",
         "ir":"craylife/sensor/shelter_count",
 

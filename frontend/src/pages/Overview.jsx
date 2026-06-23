@@ -15,6 +15,15 @@ import {
 
 const API_URL = "http://192.168.1.173:5000";
 
+const ENV_SENSORS = [
+  "ammonia",
+  "lux",
+  "ir",
+  "watertank_tds",
+  "watertank_flow",
+  "watertank_status"
+];
+
 function buildStats(sensors = []) {
   const total = sensors.length;
 
@@ -47,8 +56,17 @@ function buildStats(sensors = []) {
 export default function Overview({
   sensors = [],
 }) {
-  const stats = buildStats(sensors);
-  const groups = groupSensors(sensors);
+  // Filter to only include the 6 known sensors
+  const knownSensors = ENV_SENSORS.map((name) =>
+    sensors.find((s) => s.sensor_name === name) || {
+      sensor_name: name,
+      value: null,
+      timestamp: null,
+    }
+  );
+
+  const stats = buildStats(knownSensors);
+  const groups = groupSensors(knownSensors);
 
   const [ammoniaHistory, setAmmoniaHistory] =
     useState([]);
@@ -60,6 +78,9 @@ export default function Overview({
     useState([]);
 
   const [alertData, setAlertData] =
+    useState([]);
+    
+  const [tdsHistory, setTdsHistory] =
     useState([]);
 
   useEffect(() => {
@@ -147,6 +168,28 @@ export default function Overview({
             value: Math.max(0, normal),
           },
         ]);
+
+        /* -------------------------
+           TDS TREND
+        -------------------------- */
+
+        const tdsRows = rows
+          .filter(
+            (r) =>
+              r.sensor_name
+                .toLowerCase()
+                .includes("tds")
+          )
+          .slice(-30);
+
+        setTdsHistory(
+          tdsRows.map((r) => ({
+            time: new Date(
+              r.timestamp
+            ).toLocaleTimeString(),
+            value: Number(r.value),
+          }))
+        );
 
         /* -------------------------
            ALERT BAR CHART
@@ -269,7 +312,7 @@ export default function Overview({
             {stats.live}
           </span>
           <span className="stat-card__label">
-            Live Readings
+            Active
           </span>
         </div>
 
@@ -284,7 +327,7 @@ export default function Overview({
             {stats.offline}
           </span>
           <span className="stat-card__label">
-            No Data
+            Data
           </span>
         </div>
 
@@ -316,6 +359,12 @@ export default function Overview({
         />
 
         <OverviewCharts
+          title="TDS Trend"
+          type="line"
+          data={tdsHistory}
+        />
+
+        <OverviewCharts
           title="Lux Trend"
           type="area"
           data={luxHistory}
@@ -325,12 +374,6 @@ export default function Overview({
           title="Water Flow Status"
           type="pie"
           data={flowStatus}
-        />
-
-        <OverviewCharts
-          title="Alert Distribution"
-          type="bar"
-          data={alertData}
         />
       </div>
 

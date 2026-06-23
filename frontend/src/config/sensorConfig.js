@@ -98,6 +98,18 @@ export const SENSOR_CONFIG = {
     type: "alert",
     icon: "alert",
   },
+  growlightstatus: {
+    label: "Grow Light",
+    group: "environment",
+    type: "toggle",
+    icon: "bulb",
+  },
+  uv: {
+    label: "UV Light",
+    group: "environment",
+    type: "toggle",
+    icon: "sun",
+  },
 };
 
 const FALLBACK_ICON_BY_TYPE = {

@@ -101,7 +101,7 @@ html, body, #root {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-sm);
-  background: linear-gradient(155deg, var(--accent-shell), #8f4621);
+  background:#fff;
   display: flex;
   align-items: center;
   justify-content: center;

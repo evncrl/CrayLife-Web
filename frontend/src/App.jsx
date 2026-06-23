@@ -12,6 +12,15 @@ import History from "../src/pages/History";
 
 import {fetchSensors} from "../src/services/api";
 
+import Piad from "../src/pages/Individual/Piad";
+import Tomon from "../src/pages/Individual/Tomon";
+import Belenzo from "../src/pages/Individual/Belenzo";
+import Leano from "../src/pages/Individual/Leaño";
+import Carutcho from "../src/pages/Individual/Carutcho";
+import Ofracio from "../src/pages/Individual/Ofracio";
+
+import Control from "../src/pages/Control";
+
 import "../src/styles/Dashboard.css";
 
 function secondsAgo(date) {
@@ -76,6 +85,24 @@ export default function App() {
 
       case "history":
         return <History />;
+
+      case "piad":
+        return <Piad sensors={sensors} />;
+
+      case "tomon":
+        return <Tomon sensors={sensors} />;
+
+      case "belenzo":
+        return <Belenzo sensors={sensors} />;
+
+      case "leano":
+        return <Leano sensors={sensors} />;
+
+      case "carutcho":
+        return <Carutcho sensors={sensors} />;
+
+      case "ofracio":
+        return <Ofracio sensors={sensors} />;
 
       default:
         return <Overview sensors={sensors} />;

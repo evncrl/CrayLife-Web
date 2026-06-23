@@ -9,10 +9,10 @@ import { getSensorMeta, isEmptyValue } from "../config/sensorConfig";
 const ENV_SENSORS = [
   "ammonia",
   "lux",
-  "voltage",
   "ir",
-  "status",
-  "growlightstatus",
+  "watertank_tds",
+  "watertank_flow",
+  "watertank_status"
 ];
 
 function getReading(sensors, name) {
